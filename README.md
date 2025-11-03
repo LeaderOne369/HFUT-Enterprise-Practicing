@@ -1,202 +1,168 @@
-# HospAI - 医院智慧客服系统
+# HospAI — Intelligent Hospital Customer Service System (Qt/C++ + AI)
 
-## 🏥 项目概述
+Modern, cross‑platform hospital customer service system featuring AI triage, real‑time consultation, hospital navigation, user/role management, operational analytics, and compliance‑ready auditing. Built with Qt 6 and C++17, backed by SQLite, and integrated with ByteDance Doubao AI for clinical triage assistance.
 
-HospAI 是一个基于 Qt6 开发的现代化医院智慧客服系统，集成了 AI 智能分诊、实时聊天、医院导航、用户管理等完整功能。系统支持患者、客服、管理员三种角色，提供全方位的医疗服务支持。
+Badges: `Qt 6.x` · `C++17` · `SQLite` · `Doubao AI` · `Cross‑platform (Windows/macOS/Linux)` · `qmake/CMake`
 
-![系统架构](https://img.shields.io/badge/Qt-6.x-blue) ![数据库](https://img.shields.io/badge/Database-SQLite-green) ![AI](https://img.shields.io/badge/AI-豆包API-orange) ![平台](https://img.shields.io/badge/Platform-跨平台-lightgrey)
+## Overview
 
-## ✨ 核心功能
+HospAI is an industry‑grade desktop application designed to streamline hospital front‑desk operations and patient experience. The system supports three roles — Patient, Staff (Customer Service), and Administrator — delivering AI‑assisted symptom assessment, seamless handoff to human agents, and robust administration with analytics and audit trails.
 
-### 🤖 AI 智能分诊
-- **症状分析**：基于自然语言理解，智能分析患者症状描述
-- **科室推荐**：根据症状智能推荐最合适的医院科室  
-- **紧急程度评估**：自动评估症状紧急程度，危急情况建议急诊
-- **就医指导**：提供专业的就医建议和注意事项
+This project was developed under an enterprise‑style capstone program jointly run by Hefei University of Technology (HFUT) and GuoChuang Software Co., Ltd., with a strong emphasis on production‑ready architecture, security, maintainability, and cross‑platform delivery.
 
-### 💬 实时聊天系统
-- **多角色支持**：患者可发起咨询，客服可处理多个会话
-- **会话管理**：完整的对话记录存储和查询
-- **无缝转接**：AI无法解决时自动转接人工客服
-- **实时推送**：基于定时器的消息推送机制
+## Key Capabilities
 
-### 🗺️ 医院导航系统
-- **虚拟平面图**：程序生成的彩色医院布局图
-- **交互导航**：点击科室名称查看详细导航路径
-- **路径可视化**：红色路径线条、箭头指示、目标标记
-- **导航说明**：包含步行时间、特殊提示等详细信息
+- AI Triage and Guidance
 
-### 👨‍💻 管理系统
-- **用户管理**：用户账户的增删改查，角色权限分配
-- **系统统计**：用户分布、聊天数据、系统性能等统计分析
-- **配置管理**：AI参数、常见问题、科室信息等配置
-- **审计日志**：操作日志、聊天记录、系统日志的完整记录
+  - Symptom understanding via natural‑language input
+  - Department recommendation and urgency estimation
+  - Actionable care guidance with safety caveats
 
-### 🎨 现代化界面
-- **扁平化设计**：简洁现代的界面风格，蓝灰色系主题
-- **统一样式**：全局CSS样式管理，多种组件样式
-- **响应式布局**：支持不同屏幕尺寸自适应
+- Real‑time Consultation Workflow
 
-## 🏗️ 技术架构
+  - Role‑aware chat between patients and staff
+  - Session lifecycle management (Waiting, In‑Progress, Ended)
+  - Automatic escalation from AI to human agents
+  - Timer‑based polling for consistent delivery in desktop contexts
 
-### 技术栈
-- **开发框架**：Qt 6.x (C++)
-- **数据库**：SQLite 3
-- **AI 服务**：豆包 API (字节跳动)
-- **网络通信**：Qt Network 模块
-- **构建工具**：qmake / CMake
-- **支持平台**：Windows、macOS、Linux
+- Hospital Navigation
 
-### 系统架构
+  - Programmatically rendered, color‑coded floor maps
+  - Clickable destinations and path visualization with arrows/markers
+  - Clear navigation notes (ETA, special instructions)
+
+- Administration and Governance
+  - User and role management with RBAC
+  - System statistics (user engagement, chat/session KPIs)
+  - Configuration management (AI parameters, FAQ, department meta)
+  - Comprehensive audit logging (operations, sessions, system events)
+
+## Architecture and Technology
+
+- Framework: Qt 6.x (C++17), Qt Widgets, Qt Network
+- Data Layer: SQLite 3 (local, transactional)
+- AI Integration: ByteDance Doubao API (REST over Qt Network)
+- Build: qmake and CMake (both supported)
+- Platforms: Windows, macOS, Linux
+
+Layered design with modular boundaries:
+
+- Core: database access, AI client, message storage/types, user roles
+- Views: patient/staff/admin UIs, shared widgets and windowing
+- Utilities: style/theming, settings, dialogs, navigation components
+
+Database model highlights: Users, Sessions, Messages, Quick Replies, System Config. Passwords are stored as salted hashes; access is guarded by role‑based authorization.
+
+## Project Structure
+
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│    患者端       │    │    客服端       │    │    管理端       │
-│  - AI智能分诊   │    │  - 会话管理     │    │  - 用户管理     │
-│  - 人工咨询     │◄───┤  - 实时聊天     │◄───┤  - 系统统计     │
-│  - 医院导航     │    │  - 历史记录     │    │  - 配置管理     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │   数据层        │
-                    │  - SQLite 数据库 │
-                    │  - 用户表       │
-                    │  - 聊天会话表   │
-                    │  - 消息表       │
-                    │  - 系统配置     │
-                    └─────────────────┘
+HospAI/
+├── main.cpp                     # Application entry
+├── mainwindow.*                 # Primary window and UI
+├── HospAI.pro                   # qmake project file
+├── CMakeLists.txt               # CMake project file
+├── src/
+│   ├── core/                    # Database, AI client, storage, types
+│   └── views/                   # UI modules: common, patient, staff, admin
+└── html/                        # HTML templates (mock/demo assets)
 ```
 
-## 🚀 快速开始
+## Build and Run
 
-### 环境要求
-- Qt 6.0+ 或 Qt 5.15+
-- C++17 编译器
+### Prerequisites
+
+- Qt 6.0+ (or Qt 5.15+)
+- C++17‑capable compiler
 - SQLite3
 
-### 编译安装
+### Build with qmake (recommended)
 
-1. **克隆项目**
-```bash
-git clone <repository-url>
-cd HospAI
-```
-
-2. **使用 qmake 编译（推荐）**
 ```bash
 qmake HospAI.pro
 make
 ```
 
-3. **或使用 CMake 编译**
+### Build with CMake
+
 ```bash
 mkdir build && cd build
 cmake ..
 make -j4
 ```
 
-4. **运行程序**
+### Run
+
 ```bash
-./HospAI  # Linux/macOS
-# 或 HospAI.exe  # Windows
+./HospAI        # Linux/macOS
+# or HospAI.exe # Windows
 ```
 
-## 👥 测试账户
+## Demo Accounts
 
-系统预置了以下测试账户：
+Use the following seeded credentials for local testing:
 
-| 用户名 | 密码 | 角色 | 说明 |
-|--------|------|------|------|
-| guanli1 | 123456 | 管理员 | 系统管理员 |
-| kefu1 | 123456 | 客服 | 客服人员 |
-| huanzhe1 | 123456 | 患者 | 普通患者 |
+| Username | Password | Role    | Notes            |
+| -------- | -------- | ------- | ---------------- |
+| guanli1  | 123456   | Admin   | System admin     |
+| kefu1    | 123456   | Staff   | Customer service |
+| huanzhe1 | 123456   | Patient | Standard patient |
 
-## 📖 使用指南
+## Usage Guide
 
-### 患者端
-1. 登录后选择"AI智能分诊"进行症状咨询
-2. 获得AI建议后可选择"转人工客服"
-3. 使用"医院导航"查看科室位置和路径
+- Patient
 
-### 客服端
-1. 登录后在左侧查看等待接入的患者
-2. 双击患者头像接受咨询会话
-3. 在右侧聊天界面回复患者问题
+  1. Log in → AI Triage for symptom assessment
+  2. Optionally escalate to human staff
+  3. Use Hospital Navigation for department routes
 
-### 管理端
-1. "用户管理"：管理系统用户账户
-2. "系统统计"：查看用户活跃度和系统数据
-3. "系统配置"：设置AI参数和系统配置
-4. "审计日志"：查看系统操作和聊天记录
+- Staff (Customer Service)
 
-## 📂 项目结构
+  1. Log in → view waiting patients
+  2. Accept a session and chat in real time
+  3. Record outcomes and manage session states
 
-```
-HospAI/
-├── main.cpp                    # 程序入口
-├── mainwindow.cpp/.h/.ui       # 主窗口
-├── HospAI.pro                  # qmake项目文件
-├── CMakeLists.txt              # CMake项目文件
-├── src/                        # 源代码目录
-│   ├── core/                   # 核心模块
-│   │   ├── DatabaseManager.*   # 数据库管理
-│   │   └── AIApiClient.*       # AI API客户端
-│   ├── views/                  # 界面模块
-│   │   ├── common/             # 公共组件
-│   │   ├── patient/            # 患者端界面
-│   │   ├── staff/              # 客服端界面
-│   │   └── admin/              # 管理端界面
-│   └── utils/                  # 工具类
-├── resources/                  # 资源文件
-├── docs/                       # 文档
-├── scripts/                    # 脚本文件
-└── html/                       # HTML模板
-```
+- Administrator
+  1. Manage users and role assignments
+  2. Review system and engagement analytics
+  3. Configure AI parameters, FAQs, department meta
+  4. Audit system and session logs
 
-## 🔧 核心特性
+## AI and Reliability
 
-### 数据库设计
-- **用户表**：存储用户账户信息和角色权限
-- **聊天会话表**：管理患者和客服的会话状态
-- **聊天消息表**：记录所有聊天消息内容
-- **系统配置表**：存储AI参数和系统设置
+- Doubao AI REST integration encapsulated in an `AIApiClient` with
+  - asynchronous requests
+  - robust error handling and retry policy
+- Deterministic desktop delivery via timer‑based polling
 
-### AI 集成
-- 使用豆包AI API进行智能分诊
-- 支持症状分析和科室推荐
-- 可配置AI参数和响应阈值
+## Security and Compliance
 
-### 实时通信
-- 基于Qt定时器的消息推送机制
-- 支持多客服同时在线处理
-- 会话状态实时同步更新
+- Password hashing and secure credential handling
+- Role‑based access control (RBAC)
+- Parameterized DB operations and validation
+- End‑to‑end audit trail for admin and operational actions
 
-## 🔒 安全特性
+## Performance and UX
 
-- 密码哈希存储，保护用户隐私
-- 角色权限控制，防止越权访问
-- 数据库操作安全验证
-- 完整的操作日志记录
+- Optimized chat polling cadence for multi‑concurrent sessions
+- Smooth session state transitions to minimize operator friction
+- Consistent, modern theming via centralized style manager
 
-## 🤝 贡献指南
+## Academic–Industry Collaboration Context
 
-1. Fork 本项目
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
+This system was developed within the Enterprise Practicing program co‑organized by HFUT and GuoChuang Software, following enterprise‑grade processes: architectural design reviews, role‑based tasking, cross‑platform QA, and formal acceptance. The resulting application emphasizes correctness, maintainability, portability, and real‑world operability.
 
-## 📄 许可证
+## Contributing
 
-本项目采用 MIT 许可证 - 详情请参阅 [LICENSE](LICENSE) 文件
+1. Fork the repo
+2. Create a feature branch: `git checkout -b feature/AmazingFeature`
+3. Commit changes: `git commit -m "Add some AmazingFeature"`
+4. Push the branch: `git push origin feature/AmazingFeature`
+5. Open a Pull Request
 
-## 🙏 致谢
+## License
 
-- Qt Framework 提供的优秀跨平台开发框架
-- 字节跳动豆包AI提供的智能API服务
-- SQLite 提供的轻量级数据库解决方案
+MIT License — see `LICENSE` for details.
 
----
+—
 
-**HospAI** - 让医疗服务更智能，让患者体验更优质 🏥✨ 
+HospAI — Bringing intelligent, reliable assistance to hospital front desks.
