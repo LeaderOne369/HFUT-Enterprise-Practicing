@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/icons">
+        <file>icons/select.png</file>
+        <file>icons/rectangle.png</file>
+        <file>icons/circle.png</file>
+        <file>icons/triangle.png</file>
+        <file>icons/polygon.png</file>
+        <file>icons/clear.png</file>
+        <file>icons/delete.png</file>
+    </qresource>
+</RCC> 

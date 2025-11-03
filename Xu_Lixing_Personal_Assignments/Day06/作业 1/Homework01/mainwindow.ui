@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>HTTP客户端工具</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #f5f5f5;
+}
+
+QTabWidget::pane {
+    border: 1px solid #cccccc;
+    background-color: white;
+    border-radius: 5px;
+}
+
+QTabBar::tab {
+    background-color: #e0e0e0;
+    padding: 8px 16px;
+    margin-right: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+QTabBar::tab:selected {
+    background-color: white;
+    border-bottom: 2px solid #2196F3;
+}
+
+QPushButton {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #1976D2;
+}
+
+QPushButton:pressed {
+    background-color: #0D47A1;
+}
+
+QLineEdit {
+    padding: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+QLineEdit:focus {
+    border-color: #2196F3;
+}
+
+QTextEdit {
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+QProgressBar {
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background-color: #4CAF50;
+    border-radius: 3px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>15</number>
+    </property>
+    <property name="topMargin">
+     <number>15</number>
+    </property>
+    <property name="rightMargin">
+     <number>15</number>
+    </property>
+    <property name="bottomMargin">
+     <number>15</number>
+    </property>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="downloadTab">
+       <attribute name="title">
+        <string>下载</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="downloadLayout">
+        <item>
+         <widget class="QGroupBox" name="downloadGroupBox">
+          <property name="title">
+           <string>文件下载</string>
+          </property>
+          <layout class="QGridLayout" name="downloadGridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="downloadUrlLabel">
+             <property name="text">
+              <string>下载URL:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="downloadUrlEdit">
+             <property name="placeholderText">
+              <string>请输入下载文件的URL</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="downloadPathLabel">
+             <property name="text">
+              <string>保存路径:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="downloadPathEdit">
+             <property name="placeholderText">
+              <string>选择文件保存路径</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="browseDownloadButton">
+             <property name="text">
+              <string>浏览</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="downloadButton">
+             <property name="text">
+              <string>开始下载</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="downloadProgressLabel">
+             <property name="text">
+              <string>下载进度:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QProgressBar" name="downloadProgressBar"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="uploadTab">
+       <attribute name="title">
+        <string>上传</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="uploadLayout">
+        <item>
+         <widget class="QGroupBox" name="uploadGroupBox">
+          <property name="title">
+           <string>文件上传</string>
+          </property>
+          <layout class="QGridLayout" name="uploadGridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="uploadUrlLabel">
+             <property name="text">
+              <string>上传URL:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="uploadUrlEdit">
+             <property name="placeholderText">
+              <string>请输入上传接口的URL</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="uploadFileLabel">
+             <property name="text">
+              <string>选择文件:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="uploadFileEdit">
+             <property name="placeholderText">
+              <string>选择要上传的文件</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="browseUploadButton">
+             <property name="text">
+              <string>浏览</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="uploadButton">
+             <property name="text">
+              <string>开始上传</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="uploadProgressLabel">
+             <property name="text">
+              <string>上传进度:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QProgressBar" name="uploadProgressBar"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="postTab">
+       <attribute name="title">
+        <string>POST请求</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="postLayout">
+        <item>
+         <widget class="QGroupBox" name="postGroupBox">
+          <property name="title">
+           <string>HTTP POST请求</string>
+          </property>
+          <layout class="QGridLayout" name="postGridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="postUrlLabel">
+             <property name="text">
+              <string>请求URL:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="postUrlEdit">
+             <property name="placeholderText">
+              <string>请输入POST请求的URL</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="contentTypeLabel">
+             <property name="text">
+              <string>Content-Type:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="contentTypeCombo">
+             <item>
+              <property name="text">
+               <string>application/json</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>application/xml</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>application/x-www-form-urlencoded</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QLabel" name="postDataLabel">
+             <property name="text">
+              <string>请求数据:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QTextEdit" name="postDataEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>150</height>
+              </size>
+             </property>
+             <property name="placeholderText">
+              <string>请输入POST请求的数据 (JSON/XML格式)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QPushButton" name="postButton">
+             <property name="text">
+              <string>发送请求</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="responseTab">
+       <attribute name="title">
+        <string>响应数据</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="responseLayout">
+        <item>
+         <widget class="QGroupBox" name="responseGroupBox">
+          <property name="title">
+           <string>服务器响应</string>
+          </property>
+          <layout class="QVBoxLayout" name="responseVerticalLayout">
+           <item>
+            <layout class="QHBoxLayout" name="responseHeaderLayout">
+             <item>
+              <widget class="QLabel" name="responseStatusLabel">
+               <property name="text">
+                <string>状态码:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="responseStatusValue">
+               <property name="text">
+                <string>-</string>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: #4CAF50; font-weight: bold;</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="headerSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QComboBox" name="responseFormatCombo">
+               <item>
+                <property name="text">
+                 <string>原始数据</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>格式化JSON</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>格式化XML</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="responseDataEdit">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>服务器响应数据将在这里显示</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="actionClear"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionClear">
+   <property name="text">
+    <string>清空数据</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>关于</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<company>
+    <name>示例科技公司</name>
+    <founded>2010</founded>
+    <headquarters>北京</headquarters>
+    <departments>
+        <department id="1">
+            <name>研发部</name>
+            <employees>
+                <employee id="101">
+                    <name>张三</name>
+                    <position>高级工程师</position>
+                    <salary>15000</salary>
+                    <skills>
+                        <skill>C++</skill>
+                        <skill>Qt</skill>
+                        <skill>Python</skill>
+                    </skills>
+                </employee>
+                <employee id="102">
+                    <name>李四</name>
+                    <position>项目经理</position>
+                    <salary>20000</salary>
+                    <skills>
+                        <skill>项目管理</skill>
+                        <skill>团队协作</skill>
+                    </skills>
+                </employee>
+            </employees>
+        </department>
+        <department id="2">
+            <name>销售部</name>
+            <employees>
+                <employee id="201">
+                    <name>王五</name>
+                    <position>销售代表</position>
+                    <salary>12000</salary>
+                </employee>
+            </employees>
+        </department>
+    </departments>
+</company> 

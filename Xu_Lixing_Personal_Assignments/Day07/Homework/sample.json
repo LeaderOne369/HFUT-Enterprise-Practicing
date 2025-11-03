@@ -1,0 +1,38 @@
+{
+  "library": {
+    "name": "示例图书馆",
+    "location": "北京市朝阳区",
+    "established": 1990,
+    "books": [
+      {
+        "id": 1,
+        "title": "C++ 程序设计",
+        "author": "张三",
+        "price": 89.5,
+        "available": true,
+        "tags": ["编程", "C++", "软件开发"]
+      },
+      {
+        "id": 2,
+        "title": "Qt 应用开发",
+        "author": "李四",
+        "price": 99.0,
+        "available": false,
+        "tags": ["Qt", "GUI", "跨平台"]
+      }
+    ],
+    "staff": {
+      "librarian": "王五",
+      "assistant": "赵六",
+      "contact": {
+        "phone": "010-12345678",
+        "email": "library@example.com"
+      }
+    },
+    "statistics": {
+      "total_books": 2,
+      "borrowed_books": 1,
+      "daily_visitors": null
+    }
+  }
+}

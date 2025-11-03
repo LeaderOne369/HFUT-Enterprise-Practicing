@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>多功能文件处理工具</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <!-- XML 编辑器标签页 -->
+      <widget class="QWidget" name="xmlTab">
+       <attribute name="title">
+        <string>XML 编辑器</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="xmlLayout">
+        <item>
+         <layout class="QHBoxLayout" name="xmlButtonsLayout">
+          <item>
+           <widget class="QPushButton" name="loadXmlButton">
+            <property name="text">
+             <string>加载XML文件</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveXmlButton">
+            <property name="text">
+             <string>保存XML文件</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="createSampleXmlButton">
+            <property name="text">
+             <string>创建示例XML</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="xmlSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="xmlSplitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QTreeWidget" name="xmlTreeWidget">
+           <property name="headerHidden">
+            <bool>false</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string>节点</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>值</string>
+            </property>
+           </column>
+          </widget>
+          <widget class="QTextEdit" name="xmlTextEdit">
+           <property name="font">
+            <font>
+             <family>Courier</family>
+            </font>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <!-- JSON 编辑器标签页 -->
+      <widget class="QWidget" name="jsonTab">
+       <attribute name="title">
+        <string>JSON 编辑器</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="jsonLayout">
+        <item>
+         <layout class="QHBoxLayout" name="jsonButtonsLayout">
+          <item>
+           <widget class="QPushButton" name="loadJsonButton">
+            <property name="text">
+             <string>加载JSON文件</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="saveJsonButton">
+            <property name="text">
+             <string>保存JSON文件</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="formatJsonButton">
+            <property name="text">
+             <string>格式化JSON</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="validateJsonButton">
+            <property name="text">
+             <string>验证JSON</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="jsonSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="jsonSplitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QTextEdit" name="jsonTextEdit">
+           <property name="font">
+            <font>
+             <family>Courier</family>
+            </font>
+           </property>
+          </widget>
+          <widget class="QTreeWidget" name="jsonTreeWidget">
+           <property name="headerHidden">
+            <bool>false</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string>键</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>值</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>类型</string>
+            </property>
+           </column>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <!-- MySQL 查询标签页 -->
+      <widget class="QWidget" name="mysqlTab">
+       <attribute name="title">
+        <string>MySQL 查询</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="mysqlLayout">
+        <item>
+         <widget class="QGroupBox" name="connectionGroupBox">
+          <property name="title">
+           <string>数据库连接</string>
+          </property>
+          <layout class="QGridLayout" name="connectionLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="hostLabel">
+             <property name="text">
+              <string>主机:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="hostEdit">
+             <property name="text">
+              <string>localhost</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="portLabel">
+             <property name="text">
+              <string>端口:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLineEdit" name="portEdit">
+             <property name="text">
+              <string>3306</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="databaseLabel">
+             <property name="text">
+              <string>数据库:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="databaseEdit"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="usernameLabel">
+             <property name="text">
+              <string>用户名:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="usernameEdit"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="passwordLabel">
+             <property name="text">
+              <string>密码:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="passwordEdit">
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2" colspan="2">
+            <layout class="QHBoxLayout" name="connectionButtonsLayout">
+             <item>
+              <widget class="QPushButton" name="connectButton">
+               <property name="text">
+                <string>连接</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="disconnectButton">
+               <property name="text">
+                <string>断开连接</string>
+               </property>
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="queryGroupBox">
+          <property name="title">
+           <string>SQL 查询</string>
+          </property>
+          <layout class="QVBoxLayout" name="queryLayout">
+           <item>
+            <layout class="QHBoxLayout" name="queryButtonsLayout">
+             <item>
+              <widget class="QPushButton" name="executeButton">
+               <property name="text">
+                <string>执行查询</string>
+               </property>
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clearQueryButton">
+               <property name="text">
+                <string>清空查询</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="querySpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="sqlTextEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Courier</family>
+              </font>
+             </property>
+             <property name="placeholderText">
+              <string>在此输入SQL查询语句...</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="resultGroupBox">
+          <property name="title">
+           <string>查询结果</string>
+          </property>
+          <layout class="QVBoxLayout" name="resultLayout">
+           <item>
+            <widget class="QTableWidget" name="resultTableWidget"/>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="messageTextEdit">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Courier</family>
+               <pointsize>9</pointsize>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>36</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
